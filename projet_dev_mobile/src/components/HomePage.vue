@@ -10,12 +10,12 @@
         </h2>
         <div class="columns">
           <div class="column">
-            <router-link to="/calendrier" tag="button" class="button">
+            <router-link :to="{name: 'SelectionChampionnat', params: { mode: 'calendrier' }}" tag="button" class="button">
               Calendrier
             </router-link>
           </div>
           <div class="column">
-            <router-link to="/classement" tag="button" class="button">
+            <router-link :to="{name: 'SelectionChampionnat', params: { mode: 'classement' }}" tag="button" class="button">
               Classement
             </router-link>
           </div>

@@ -2,17 +2,18 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <SelectionChampionnat/>
+        CECI EST LE CLASSEMENT DE {{idChampionnat}}
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import SelectionChampionnat from './SelectionChampionnat.vue';
 export default {
-  components: { SelectionChampionnat },
   name: "Classement",
+  props:{
+      idChampionnat: Number,
+  },
 };
 </script>
 

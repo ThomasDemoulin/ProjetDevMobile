@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../components/HomePage.vue'
 import Calendrier from '../components/Calendrier.vue'
 import Classement from '../components/Classement.vue'
+import SelectionChampionnat from '../components/SelectionChampionnat.vue'
 
 const routes = [
     {
@@ -10,14 +11,22 @@ const routes = [
       component: HomePage
     },
     {
-        path: '/calendrier',
+        path: '/calendrier/:idChampionnat',
         name: 'Calendrier',
-        component: Calendrier
+        component: Calendrier,
+        props: true
     },
     {
-        path: '/classement',
+        path: '/classement/:idChampionnat',
         name: 'Classement',
-        component: Classement
+        component: Classement,
+        props: true
+    },
+    {
+        path: '/championnats/:mode',
+        name: 'SelectionChampionnat',
+        component: SelectionChampionnat,
+        props: true
     }
 ]
 

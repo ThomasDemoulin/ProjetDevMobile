@@ -8,6 +8,7 @@
             :key="championnat.id"
             class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
             :championnat="championnat"
+            :mode="mode"
             />
         </div>
       </div>
@@ -25,6 +26,9 @@ export default {
       return{
           championnats:[]
       }
+  },
+  props: {
+      mode: String,
   },
   mounted() {
     axios

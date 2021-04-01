@@ -2,7 +2,7 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
-        CECI EST UN CALENDRIER
+        CECI EST LE CALENDRIER DE {{idChampionnat}}
       </div>
     </div>
   </section>
@@ -11,6 +11,9 @@
 <script>
 export default {
   name: "Calendrier",
+  props:{
+      idChampionnat: Number,
+  },
 };
 </script>
 
