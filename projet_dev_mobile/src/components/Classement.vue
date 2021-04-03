@@ -2,8 +2,8 @@
   <section class="hero classement">
     <div class="hero-body">
       <div class="container">
-        CLASSEMENT : {{classement?.competition?.name}}
-        <table class="table">
+        CLASSEMENT : {{response?.competition?.name}}
+        <table class="table" v-for="classement in groupesAAfficher" :key="classement?.group">
           <thead>
             <tr>
               <th style="color: white"><abbr title="Position">Pos</abbr></th>
@@ -18,22 +18,8 @@
               <th style="color: white"><abbr title="Points">Pts</abbr></th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th><abbr title="Position">Pos</abbr></th>
-              <th>Equipe</th>
-              <th><abbr title="Journées">Jou</abbr></th>
-              <th><abbr title="Victoires">V</abbr></th>
-              <th><abbr title="Nuls">N</abbr></th>
-              <th><abbr title="Défaites">D</abbr></th>
-              <th><abbr title="Buts pour">BP</abbr></th>
-              <th><abbr title="Buts contre">BC</abbr></th>
-              <th><abbr title="Difference">Diff</abbr></th>
-              <th><abbr title="Points">Pts</abbr></th>
-            </tr>
-          </tfoot>
           <tbody>
-            <tr v-for="(equipe, position) in classement?.standings?.[0]?.table" :key="position?.team?.id">
+            <tr v-for="(equipe, position) in classement?.table" :key="position?.team?.id">
               <th>{{position + 1}}</th>
               <td>{{equipe?.team?.name}}</td>
               <td>{{equipe?.playedGames}}</td>
@@ -61,7 +47,8 @@ export default {
   },
   data(){
       return{
-          classement:[]
+          response:[],
+          groupesAAfficher: [],
       }
   },
   mounted() {
@@ -74,7 +61,12 @@ export default {
         }
       )
       .then((response) => {
-        this.classement = response.data;
+        this.response = response.data;
+        response.data.standings.forEach(classement => {
+          if (classement?.type === 'TOTAL') {
+            this.groupesAAfficher.push(classement);
+          }
+        });
         console.log(response);
       })
       .catch((error) => {
