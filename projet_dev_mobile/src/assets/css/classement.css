@@ -1,0 +1,9 @@
+.classement .container {
+    width: 50%;
+}
+
+.classement table, .classement th, .classement thead > tr, .classement tfoot > tr >th {
+    background-color: transparent;
+    color: white;
+    text-align: left;
+}

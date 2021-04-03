@@ -1,11 +1,10 @@
 <template>
-  <section class="hero">
+  <section class="hero calendrier">
     <div class="hero-body">
       <div class="container">
-        CALENDRIER : {{calendrier.competition.name}}
-        <div v-for="match in calendrier.matches"
-            :key="match.id">
-          Journée {{match.matchday}} : {{match.homeTeam.name}} - {{match.awayTeam.name}}
+        CALENDRIER : {{calendrier.competition?.name}}
+        <div v-for="match in calendrier.matches" :key="match.id">
+          Journée {{match.matchday}} : {{match.homeTeam.name}} {{match.score.fullTime.homeTeam}} - {{match.score.fullTime.awayTeam}} {{match.awayTeam.name}}
         </div>
       </div>
     </div>
@@ -38,7 +37,7 @@ export default {
         console.log(response);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error); // TODO : FAIRE UN TOAST CAPACITOR (Premier plugin)
       });
   },
 };

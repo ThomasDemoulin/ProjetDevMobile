@@ -1,5 +1,5 @@
 <template>
-  <section class="hero">
+  <section class="hero championnat">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-multiline">
@@ -44,7 +44,7 @@ export default {
         console.log(this.championnats);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error); // TODO : FAIRE UN TOAST CAPACITOR (Premier plugin)
       });
   },
 };
