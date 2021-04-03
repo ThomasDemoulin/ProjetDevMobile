@@ -1,0 +1,20 @@
+.calendrier .container {
+    width: 75%;
+    text-align: center;
+}
+
+.calendrier table, .calendrier th, .calendrier thead > tr, .calendrier tfoot > tr >th {
+    background-color: transparent;
+    color: white;
+    margin: auto;
+    width: 75%;
+}
+
+.calendrier .domicileColonne, .calendrier .exterieurColonne {
+    width: 33%;
+}
+
+.calendrier .scoreColonne {
+    width: 34%;
+    text-align: center;
+}

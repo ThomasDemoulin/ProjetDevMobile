@@ -9,7 +9,7 @@
             </div>
         </div>
     </router-link>
-    <router-link :to="{name: 'Calendrier', params: { idChampionnat: championnat.id }}" v-else class="card">
+    <router-link :to="{name: 'Calendrier', params: { idChampionnat: championnat.id, currentMatchday: championnat.currentSeason?.currentMatchday }}" v-else class="card">
         <div class="card-content">
             <div class="media">
             <div class="media-content">

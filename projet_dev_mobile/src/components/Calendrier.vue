@@ -2,10 +2,23 @@
   <section class="hero calendrier">
     <div class="hero-body">
       <div class="container">
-        CALENDRIER : {{calendrier.competition?.name}}
-        <div v-for="match in calendrier.matches" :key="match.id">
-          Journée {{match.matchday}} : {{match.homeTeam.name}} {{match.score.fullTime.homeTeam}} - {{match.score.fullTime.awayTeam}} {{match.awayTeam.name}}
-        </div>
+        CALENDRIER : {{calendrier?.competition?.name}} / Journée {{currentMatchday}}
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="color: white; text-align: right" class="domicileColonne">Equipe Domicile</th>
+              <th style="color: white; text-align: center" class="scoreColonne">Score</th>
+              <th style="color: white; text-align: left" class="exterieurColonne">Equipe Extérieur</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="match in calendrier?.matches" :key="match?.id">
+              <td style="text-align: right" class="domicileColonne">{{match?.homeTeam?.name}}</td>
+              <td style="text-align: center" class="scoreColonne">{{match?.score?.fullTime?.homeTeam}} - {{match?.score?.fullTime?.awayTeam}}</td>
+              <td style="text-align: left" class="exterieurColonne">{{match?.awayTeam?.name}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
@@ -17,6 +30,7 @@ export default {
   name: "Calendrier",
   props:{
       idChampionnat: Number,
+      currentMatchday: Number,
   },
   data(){
       return{
@@ -24,7 +38,7 @@ export default {
       }
   },
   mounted() {
-    const url = "http://api.football-data.org/v2/competitions/" + this.idChampionnat + "/matches";
+    const url = "http://api.football-data.org/v2/competitions/" + this.idChampionnat + "/matches?matchday=" + this.currentMatchday;
     axios
       .get(url, {
             headers: {
