@@ -6,16 +6,16 @@
         <table class="table" v-for="classement in groupesAAfficher" :key="classement?.group">
           <thead>
             <tr>
-              <th style="color: white"><abbr title="Position">Pos</abbr></th>
-              <th style="color: white">Equipe</th>
-              <th style="color: white"><abbr title="Journées">Jou</abbr></th>
-              <th style="color: white"><abbr title="Victoires">V</abbr></th>
-              <th style="color: white"><abbr title="Nuls">N</abbr></th>
-              <th style="color: white"><abbr title="Défaites">D</abbr></th>
-              <th style="color: white"><abbr title="Buts pour">BP</abbr></th>
-              <th style="color: white"><abbr title="Buts contre">BC</abbr></th>
-              <th style="color: white"><abbr title="Difference">Diff</abbr></th>
-              <th style="color: white"><abbr title="Points">Pts</abbr></th>
+              <th v-bind:style="blancStyle"><abbr title="Position">Pos</abbr></th>
+              <th v-bind:style="blancStyle">Equipe</th>
+              <th v-bind:style="blancStyle"><abbr title="Journées">Jou</abbr></th>
+              <th v-bind:style="blancStyle"><abbr title="Victoires">V</abbr></th>
+              <th v-bind:style="blancStyle"><abbr title="Nuls">N</abbr></th>
+              <th v-bind:style="blancStyle"><abbr title="Défaites">D</abbr></th>
+              <th v-bind:style="blancStyle"><abbr title="Buts pour">BP</abbr></th>
+              <th v-bind:style="blancStyle"><abbr title="Buts contre">BC</abbr></th>
+              <th v-bind:style="blancStyle"><abbr title="Difference">Diff</abbr></th>
+              <th v-bind:style="blancStyle"><abbr title="Points">Pts</abbr></th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +49,9 @@ export default {
       return{
           response:[],
           groupesAAfficher: [],
+          blancStyle: {
+            'color': 'white',
+          },
       }
   },
   mounted() {

@@ -6,16 +6,16 @@
         <table class="table">
           <thead>
             <tr>
-              <th style="color: white; text-align: right" class="domicileColonne">Equipe Domicile</th>
-              <th style="color: white; text-align: center" class="scoreColonne">Score</th>
-              <th style="color: white; text-align: left" class="exterieurColonne">Equipe Extérieur</th>
+              <th v-bind:style="styleColonneDomicile" class="domicileColonne">Equipe Domicile</th>
+              <th v-bind:style="styleColonneScore" class="scoreColonne">Score</th>
+              <th v-bind:style="styleColonneExterieur" class="exterieurColonne">Equipe Extérieur</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="match in calendrier?.matches" :key="match?.id">
-              <td style="text-align: right" class="domicileColonne">{{match?.homeTeam?.name}}</td>
-              <td style="text-align: center" class="scoreColonne">{{match?.score?.fullTime?.homeTeam}} - {{match?.score?.fullTime?.awayTeam}}</td>
-              <td style="text-align: left" class="exterieurColonne">{{match?.awayTeam?.name}}</td>
+              <td v-bind:style="styleColonneDomicile" class="domicileColonne">{{match?.homeTeam?.name}}</td>
+              <td v-bind:style="styleColonneScore" class="scoreColonne">{{match?.score?.fullTime?.homeTeam}} - {{match?.score?.fullTime?.awayTeam}}</td>
+              <td v-bind:style="styleColonneExterieur" class="exterieurColonne">{{match?.awayTeam?.name}}</td>
             </tr>
           </tbody>
         </table>
@@ -34,7 +34,19 @@ export default {
   },
   data(){
       return{
-          calendrier:{}
+          calendrier:{},
+          styleColonneDomicile: {
+            'color': 'white',
+            'text-align': 'right'
+          },
+          styleColonneScore: {
+            'color': 'white',
+            'text-align': 'center'
+          },
+          styleColonneExterieur: {
+            'color': 'white',
+            'text-align': 'left'
+          }
       }
   },
   mounted() {
