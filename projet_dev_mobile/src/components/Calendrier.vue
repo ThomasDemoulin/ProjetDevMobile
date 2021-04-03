@@ -11,8 +11,8 @@
               <th v-bind:style="styleColonneExterieur" class="exterieurColonne">Equipe Extérieur</th>
             </tr>
           </thead>
-          <tbody>
-            <tr v-for="match in calendrier?.matches" :key="match?.id">
+          <tbody v-bind:style="pointeurStyle">
+            <tr v-for="match in calendrier?.matches" :key="match?.id" @click="ouvertureModale(match)">
               <td v-bind:style="styleColonneDomicile" class="domicileColonne">{{match?.homeTeam?.name}}</td>
               <td v-bind:style="styleColonneScore" class="scoreColonne">{{match?.score?.fullTime?.homeTeam}} - {{match?.score?.fullTime?.awayTeam}}</td>
               <td v-bind:style="styleColonneExterieur" class="exterieurColonne">{{match?.awayTeam?.name}}</td>
@@ -26,6 +26,9 @@
 
 <script>
 import axios from 'axios';
+import { Plugins } from '@capacitor/core';
+const { Modals } = Plugins;
+
 export default {
   name: "Calendrier",
   props:{
@@ -46,8 +49,26 @@ export default {
           styleColonneExterieur: {
             'color': 'white',
             'text-align': 'left'
-          }
+          },
+          pointeurStyle: {
+            'cursor': 'pointer',
+          },
       }
+  },
+  methods: {
+    async ouvertureModale(match) {
+      if (match?.score?.halfTime?.homeTeam === null) {
+        await Modals.alert({
+          title: 'Modale',
+          message: 'La mi-temps n\'est pas encore passée !',
+        });
+      } else {
+        await Modals.alert({
+          title: 'Modale',
+          message: 'A la mi-temps, le score était de ' + match?.score?.halfTime?.homeTeam + ' à ' + match?.score?.halfTime?.awayTeam,
+        });
+      }
+    }
   },
   mounted() {
     const url = "http://api.football-data.org/v2/competitions/" + this.idChampionnat + "/matches?matchday=" + this.currentMatchday;

@@ -19,7 +19,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(equipe, position) in classement?.table" :key="position?.team?.id">
+            <tr v-for="(equipe, position) in classement?.table" :key="equipe?.team?.id">
               <th>{{position + 1}}</th>
               <td>{{equipe?.team?.name}}</td>
               <td>{{equipe?.playedGames}}</td>
@@ -40,6 +40,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   name: "Classement",
   props:{
