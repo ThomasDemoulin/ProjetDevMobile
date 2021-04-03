@@ -19,6 +19,9 @@
 <script>
 import axios from "axios";
 import Championnat from './Championnat.vue';
+import { Plugins } from '@capacitor/core';
+const { Toast } = Plugins;
+
 export default {
   components: { Championnat },
   name: "SelectionChampionnat", 
@@ -29,6 +32,14 @@ export default {
   },
   props: {
       mode: String,
+  },
+  methods: {
+    async toastErreurAPI() {
+      await Toast.show({
+        duration: 'long',
+        text: 'L\'appel API n\'a pas pu être effectué : l\'API nous limite à 10 requêtes gratuites par minute !'
+      });
+    }
   },
   mounted() {
     axios
@@ -44,7 +55,8 @@ export default {
         console.log(this.championnats);
       })
       .catch((error) => {
-        console.log(error); // TODO : FAIRE UN TOAST CAPACITOR (Premier plugin)
+        this.toastErreurAPI();
+        console.log(error);
       });
   },
 };
