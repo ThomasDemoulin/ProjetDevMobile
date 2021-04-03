@@ -3,9 +3,9 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Application Football
+          Application Football Thomas & Jérémie
         </h1>
-        <h2>
+        <h2 class="subtitle">
           Venez voir les derniers résultats de votre équipe préférée !
         </h2>
         <div class="columns">
@@ -17,16 +17,6 @@
           <div class="column">
             <router-link :to="{name: 'SelectionChampionnat', params: { mode: 'classement' }}" tag="button" class="button">
               Classement
-            </router-link>
-          </div>
-          <div class="column">
-            <router-link to="/todo" tag="button" class="button">
-              TODO
-            </router-link>
-          </div>
-          <div class="column">
-            <router-link to="/todo" tag="button" class="button">
-              TODO
             </router-link>
           </div>
         </div>
