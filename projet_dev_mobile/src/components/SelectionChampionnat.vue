@@ -34,10 +34,10 @@ export default {
       mode: String,
   },
   methods: {
-    async toastErreurAPI() {
+    async toastErreurAPI(error) {
       await Toast.show({
         duration: 'long',
-        text: 'L\'appel API n\'a pas pu être effectué : l\'API nous limite à 10 requêtes gratuites par minute !'
+        text: 'L\'appel API n\'a pas pu être effectué : l\'API nous limite à 10 requêtes gratuites par minute ! ' + error
       });
     }
   },
@@ -46,7 +46,7 @@ export default {
       .get(
         "http://api.football-data.org/v2/competitions?plan=TIER_ONE", {
             headers: {
-                'X-Auth-Token': '172572c9c3c44a3aa525d5fa18cd5457' //the token is a variable which holds the token
+              'X-Auth-Token': 'df3bab244ac64d57971819531df71b8a' //the token is a variable which holds the token
             }
         }
       )
@@ -55,7 +55,7 @@ export default {
         console.log(this.championnats);
       })
       .catch((error) => {
-        this.toastErreurAPI();
+        this.toastErreurAPI(error);
         console.log(error);
       });
   },

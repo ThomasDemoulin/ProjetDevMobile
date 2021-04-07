@@ -57,10 +57,10 @@ export default {
       }
   },
   methods: {
-    async toastErreurAPI() {
+    async toastErreurAPI(error) {
       await Toast.show({
         duration: 'long',
-        text: 'L\'appel API n\'a pas pu être effectué : l\'API nous limite à 10 requêtes gratuites par minute !'
+        text: 'L\'appel API n\'a pas pu être effectué : l\'API nous limite à 10 requêtes gratuites par minute ! ' + error
       });
     },
     async ouvertureModale(match) {
@@ -91,7 +91,7 @@ export default {
         console.log(response);
       })
       .catch((error) => {
-        this.toastErreurAPI();
+        this.toastErreurAPI(error);
         console.log(error);
       });
   },
